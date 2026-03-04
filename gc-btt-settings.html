@@ -826,6 +826,18 @@
 <script>
     var variables = {};
     
+    var allowedVariableValues = [
+        'true', 'false', 'loading', 'custom',
+        'default', 'default_edited',
+        'minimalist', 'minimalist_edited',
+        'gcs-daily-driver', 'gcs-daily-driver_edited',
+        'calendar', 'fantastical', 'busycal',
+        'dynamic', 'always', 'never',
+        'full', 'icon', 'off', 'hide',
+        'large', 'medium', 'small',
+        'twelveHour', 'twentyFourHour'
+    ];
+
     function getAllVariablesAndUpdateClasses() {
         console.log('Looping through switches...');
         const buttons = document.querySelectorAll('label');
@@ -841,8 +853,10 @@
                         'is set to',
                         currentVariableValue
                     );
-                    variables[button.id] = currentVariableValue;
-                    button.className = currentVariableValue;
+                    if (allowedVariableValues.indexOf(currentVariableValue) !== -1) {
+                        variables[button.id] = currentVariableValue;
+                        button.className = currentVariableValue;
+                    }
                 }
             );
         });
