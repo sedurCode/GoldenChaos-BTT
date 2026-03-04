@@ -11,7 +11,8 @@ Authors of this script:
 Thanks for using it!
 -->
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <style>
 	.main-container { /* MAIN WRAPPER */
@@ -284,7 +285,7 @@ Thanks for using it!
 		return a.filter(function(item) {
 			var type = typeof item;
 			if (type in prims)
-				return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+				return Object.prototype.hasOwnProperty.call(prims[type], item) ? false : (prims[type][item] = true);
 			else
 				return objs.indexOf(item) >= 0 ? false : objs.push(item);
 		});
